@@ -1,4 +1,6 @@
-const MockAllProducts = [
+const sinon = require('sinon');
+
+const mockAllProducts = [
   {
     "id": 1,
     "name": "Martelo de Thor"
@@ -13,12 +15,20 @@ const MockAllProducts = [
   }
 ]
 
-const MockProductById = {
+const mockProductById = {
   "id": 1,
   "name": "Martelo de Thor"
 }
 
+const mockResponse = () => {
+  const response = {};
+  response.status = sinon.stub().returns(response);
+  response.json = sinon.stub().returns(response);
+  return response;
+};
+
 module.exports = {
-  MockAllProducts,
-  MockProductById
+  mockAllProducts,
+  mockProductById,
+  mockResponse
 }

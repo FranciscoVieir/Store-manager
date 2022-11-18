@@ -6,27 +6,27 @@ const connection = require('../../../src/DB/connection');
 
 const productModel = require('../../../src/models/Products');
 
-const { MockAllProducts, MockProductById } = require('../Mocks/mocks');
+const { mockAllProducts, mockProductById } = require('../Mocks/mocks');
 
 describe('Verificando o funcionamento das services "AllProducts e productById"', () => {
 
   afterEach(sinon.restore)
 
   it('Verifica se a lista contèm todos os produtos no arquivo "Model"', async () => {
-    sinon.stub(connection, 'execute').resolves([MockAllProducts]);
+    sinon.stub(connection, 'execute').resolves([mockAllProducts]);
 
     const result = await productModel.allProducts();
 
     expect(result).to.be.an('array');
 
-    expect(result).to.be.deep.equal(MockAllProducts)
+    expect(result).to.be.deep.equal(mockAllProducts)
   })
 
   it('Verifica se a lista retorna um objeto específico pelo "id" no arquivo "Model"', async () => {
-    sinon.stub(connection, 'execute').resolves(MockProductById);
+    sinon.stub(connection, 'execute').resolves(mockProductById);
 
     const result = await productModel.productId(1);
 
-    expect(result).to.be.deep.equal(MockProductById);
+    expect(result).to.be.deep.equal(mockProductById);
   });
 })
