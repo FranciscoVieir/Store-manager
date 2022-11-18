@@ -1,14 +1,13 @@
-const selectingAllProducts = require('../models/selectingAllProducts');
-const selectingProductId = require('../models/selectingProductId');
+const productsModel = require('../models/Products');
 
 const getAllProducts = async () => {
-  const allProduct = await selectingAllProducts();
-
+  const allProduct = await productsModel.allProducts();
+  // console.log(allProduct);
   return allProduct;
 };
 
 const getProductById = async (id) => {
-  const product = await selectingProductId(id);
+  const product = await productsModel.productId(id);
 
   return product;
 };

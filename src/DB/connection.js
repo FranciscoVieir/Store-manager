@@ -9,4 +9,4 @@ const connection = mysql.createPool({
   database: process.env.MYSQL_DATABASE || 'StoreManager',
 });
 
-module.exports = { connection };
+module.exports = connection;
