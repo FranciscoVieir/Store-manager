@@ -14,10 +14,11 @@ const productId = async (id) => {
   return resultId;
 };
 
-// const createProduct = async (name) => {
-//   const query = 'INSERT products (name) VALUES (?);';
-//   const [result] = await connection.execute(query, [name]);
-//   return result;
-// };
+const createProduct = async (name) => {
+  const query = 'INSERT products (name) VALUES (?);';
+  const [result] = await connection.execute(query, [name]);
+  // console.log(result);
+  return result;
+};
 
-module.exports = { allProducts, productId };
+module.exports = { allProducts, productId, createProduct };

@@ -18,4 +18,14 @@ const productsIdController = async (req, res) => {
   res.status(200).json(productById);
 };
 
-module.exports = { allProductsController, productsIdController };
+const createProduct = async (req, resp) => {
+  const { name } = req.body;
+
+  const newProduct = await service.serviceCreateProduct(name);
+
+  console.log('create', newProduct);
+
+  resp.status(201).json(newProduct);
+};
+
+module.exports = { allProductsController, productsIdController, createProduct };
