@@ -8,7 +8,7 @@ const productModel = require('../../../src/models/Products');
 
 const { mockAllProducts, mockProductById } = require('../Mocks/mocks');
 
-describe('Verificando o funcionamento das services "AllProducts e productById"', () => {
+describe('Verificando a camada models', () => {
 
   afterEach(sinon.restore)
 
@@ -23,7 +23,7 @@ describe('Verificando o funcionamento das services "AllProducts e productById"',
   })
 
   it('Verifica se a lista retorna um objeto específico pelo "id" no arquivo "Model"', async () => {
-    sinon.stub(connection, 'execute').resolves(mockProductById);
+    sinon.stub(connection, 'execute').resolves([[mockProductById]]);
 
     const result = await productModel.productId(1);
 

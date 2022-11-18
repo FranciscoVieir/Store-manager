@@ -20,15 +20,15 @@ const mockProductById = {
   "name": "Martelo de Thor"
 }
 
-const mockResponse = () => {
-  const response = {};
-  response.status = sinon.stub().returns(response);
-  response.json = sinon.stub().returns(response);
-  return response;
-};
+// const mockResponse = () => {
+//   const response = {};
+//   response.status = sinon.stub().returns(response);
+//   response.json = sinon.stub().returns(response);
+//   return response;
+// };
 
 module.exports = {
   mockAllProducts,
   mockProductById,
-  mockResponse
+  // mockResponse
 }

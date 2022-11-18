@@ -1,32 +1,45 @@
 const { expect } = require('chai');
 const { afterEach } = require('mocha');
 const sinon = require('sinon');
+const chai = require('chai');
+const sinoChai = require('sinon-chai');
+
+
+chai.use(sinoChai)
 
 const productController = require('../../../src/controllers/productsController')
 const service = require('../../../src/services/productsServices');
 
-const { mockAllProducts, mockProductById, mockResponse } = require('../Mocks/mocks');
+const { mockAllProducts, mockProductById } = require('../Mocks/mocks');
 
-describe('Verificando o funcionamento das funcôes controller', () => {
+describe('Verificando a camada controller', () => {
+  const req = { params: { id: 500 } };
 
   it('Verifica se a lista renderiza todos os produtos referente a rota "/products"', async () => {
     sinon.stub(service, 'getAllProducts').resolves(mockAllProducts);
+    const request = {};
+    const response = {};
+    response.status = sinon.stub().returns(response);
+    response.json = sinon.stub().returns(response);
 
-    const result = await productController.allProductsController();
+    await productController.allProductsController(request, response);
 
-    expect(result).to.be.an('array');
 
-    expect(result).to.be.deep.equal(mockAllProducts)
+    expect(response.status).to.have.been.calledWith(200);
+    expect(response.json).to.have.been.calledWith(mockAllProducts)
   })
 
   it('Verifica se a lista retorna uma messagem de erro, caso o "id" passado seja inválido', async () => {
-    sinon.stub(service, 'getProductById').resolves({ message: 'Product not found' });
+    sinon.stub(service, 'getProductById').resolves(undefined);
     const request = { params: { id: 500 } };
-    const response = mockResponse();
+    const response = {};
+    response.status = sinon.stub().returns(response);
+    response.json = sinon.stub().returns(response);
 
-    const result = await productController.productsIdController(request, response);
+    await productController.productsIdController(request, response);
+
 
     expect(response.status).to.have.been.calledWith(404);
-    expect(response.json).to.have.been.calledWith({ message: 'Product not found' })
+    expect(response.json).to.have.been.calledWith({ message: 'Product not found' });
   });
 })

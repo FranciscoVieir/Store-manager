@@ -5,7 +5,7 @@ const service = require('../../../src/services/productsServices')
 const productsModel = require('../../../src/models/Products')
 const { mockAllProducts, mockProductById } = require('../Mocks/mocks');
 
-describe('Verificando o funcionamento das services "AllProducts e productById"', () => {
+describe('Verificando a camada services', () => {
   it('Verifica se a lista contèm todos os produtos', async () => {
     sinon.stub(productsModel, 'allProducts').resolves(mockAllProducts);
 
