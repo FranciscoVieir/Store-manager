@@ -24,4 +24,19 @@ describe('Verificando a camada services', () => {
 
     expect(result).to.be.deep.equal(mockProductById);
   });
+
+  it('Verifica se a lista é atualizada com os produtos', async () => {
+    sinon.stub(productsModel, 'putProduct').resolves({
+      id: 1,
+      name: 'Martelo do Batman'
+    });
+
+    const result = await service.updateProduct('Martelo do Batman', 1);
+    console.log(result)
+
+    expect(result).to.be.deep.equal({
+      id: 1,
+      name: 'Martelo do Batman'
+    })
+  })
 })
