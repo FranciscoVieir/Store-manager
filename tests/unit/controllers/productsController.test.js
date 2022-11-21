@@ -42,4 +42,18 @@ describe('Verificando a camada controller', () => {
     expect(response.status).to.have.been.calledWith(404);
     expect(response.json).to.have.been.calledWith({ message: 'Product not found' });
   });
+
+  it('Verifica se remove exibido uma messagem de "Product not found", caso o id inserido seja inválido ', async () => {
+    sinon.stub(service, 'deleteProducts').resolves(undefined);
+    const request = { params: { id: 55 } };
+    const response = {};
+    response.status = sinon.stub().returns(response);
+    response.json = sinon.stub().returns(response);
+
+    await productController.deleteProductById(request, response);
+
+
+    expect(response.status).to.have.been.calledWith(404);
+    expect(response.json).to.have.been.calledWith({ message: 'Product not found' });
+  });
 })

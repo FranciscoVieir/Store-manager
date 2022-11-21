@@ -35,8 +35,16 @@ describe('Verificando a camada models', () => {
 
     const result = await productModel.putProduct('Martelo do batman', 1);
 
-    console.log(result, 'teste')
+    // console.log(result, 'teste')
 
     // expect(result).to.be.deep.equal(1)
+  });
+
+  it('Verifica se deleta o objeto', async () => {
+    sinon.stub(connection, 'execute').resolves([mockUptade]);
+
+    const result = await productModel.deleteProduct(1);
+
+    expect(result).to.be.deep.equal([mockUptade]);
   });
 })

@@ -42,6 +42,8 @@ const updateProduct = async (name, id) => {
 const deleteProducts = async (id) => {
   const product = await productsModel.deleteProduct(id);
 
+  // console.log(product, 'deleteProductsMOdel');
+
   return product;
 };
 

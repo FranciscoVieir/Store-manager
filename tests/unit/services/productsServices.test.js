@@ -3,14 +3,14 @@ const sinon = require('sinon');
 const service = require('../../../src/services/productsServices')
 
 const productsModel = require('../../../src/models/Products')
-const { mockAllProducts, mockProductById } = require('../Mocks/mocks');
+const { mockAllProducts, mockProductById, mockDelete } = require('../Mocks/mocks');
 
 describe('Verificando a camada services', () => {
   it('Verifica se a lista contèm todos os produtos', async () => {
     sinon.stub(productsModel, 'allProducts').resolves(mockAllProducts);
 
     const result = await service.getAllProducts();
-    console.log(result)
+    // console.log(result)
 
     expect(result).to.be.an('array');
 
@@ -32,11 +32,20 @@ describe('Verificando a camada services', () => {
     });
 
     const result = await service.updateProduct('Martelo do Batman', 1);
-    console.log(result)
+    // console.log(result)
 
     expect(result).to.be.deep.equal({
       id: 1,
       name: 'Martelo do Batman'
     })
+  })
+
+  it('Verifica se o produto é selecionado pelo id na camada "model"', async () => {
+    sinon.stub(productsModel, 'deleteProduct').resolves(mockDelete)
+
+    const result = await service.deleteProducts(2);
+    // console.log(result)
+
+    expect(result).to.be.equal(mockDelete)
   })
 })

@@ -37,8 +37,18 @@ const mockUptade = {
   changedRows: 0
 };
 
+const mockDelete = {
+  fieldCount: 0,
+  affectedRows: 1,
+  insertId: 0,
+  info: '',
+  serverStatus: 2,
+  warningStatus: 0
+}
+
 module.exports = {
   mockAllProducts,
   mockProductById,
   mockUptade,
+  mockDelete,
 }
