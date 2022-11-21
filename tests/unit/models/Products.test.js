@@ -6,7 +6,7 @@ const connection = require('../../../src/DB/connection');
 
 const productModel = require('../../../src/models/Products');
 
-const { mockAllProducts, mockProductById } = require('../Mocks/mocks');
+const { mockAllProducts, mockProductById, mockUptade } = require('../Mocks/mocks');
 
 describe('Verificando a camada models', () => {
 
@@ -28,5 +28,15 @@ describe('Verificando a camada models', () => {
     const result = await productModel.productId(1);
 
     expect(result).to.be.deep.equal(mockProductById);
+  });
+
+  it('Verifica se retorna um ubjeto com', async () => {
+    sinon.stub(connection, 'execute').resolves([mockUptade]);
+
+    const result = await productModel.putProduct('Martelo do batman', 1);
+
+    console.log(result, 'teste')
+
+    // expect(result).to.be.deep.equal(1)
   });
 })
