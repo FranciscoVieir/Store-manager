@@ -28,8 +28,20 @@ const serviceCreateProduct = async (name) => {
   return newProduct;
 };
 
+const updateProduct = async (name, id) => {
+  await productsModel.putProduct(name, id);
+
+  const updatedObject = {
+    id,
+    name,
+  };
+  // console.log(updatedObject);
+  return updatedObject;
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   serviceCreateProduct,
+  updateProduct,
 };
