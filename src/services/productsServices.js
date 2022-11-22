@@ -8,6 +8,7 @@ const getAllProducts = async () => {
 
 const getProductById = async (id) => {
   const product = await productsModel.productId(id);
+  console.log(product, 'getProductById do services');
 
   return product;
 };
@@ -35,7 +36,7 @@ const updateProduct = async (name, id) => {
     id,
     name,
   };
-  // console.log(updatedObject);
+  // console.log(updatedObject, 'updateService');
   return updatedObject;
 };
 

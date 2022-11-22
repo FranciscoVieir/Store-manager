@@ -9,11 +9,13 @@ chai.use(sinoChai)
 
 const productController = require('../../../src/controllers/productsController')
 const service = require('../../../src/services/productsServices');
+const productModel = require('../../../src/models/Products');
 
 const { mockAllProducts, mockProductById, mockCreateProduct } = require('../Mocks/mocks');
 
 describe('Verificando a camada controller', () => {
   const req = { params: { id: 500 } };
+  afterEach(sinon.restore)
 
   it('Verifica se a lista renderiza todos os produtos referente a rota "/products"', async () => {
     sinon.stub(service, 'getAllProducts').resolves(mockAllProducts);
@@ -45,10 +47,10 @@ describe('Verificando a camada controller', () => {
 
   it('Verifica se remove exibido uma messagem de "Product not found", caso o id inserido seja inválido ', async () => {
     sinon.stub(service, 'deleteProducts').resolves(undefined);
-    const request = { params: { id: 55 } };
+    const request = { params: { id: 1 } };
     const response = {};
     response.status = sinon.stub().returns(response);
-    response.json = sinon.stub().returns(response);
+    response.json = sinon.stub().returns();
 
     await productController.deleteProductById(request, response);
 
@@ -69,5 +71,25 @@ describe('Verificando a camada controller', () => {
 
     expect(response.status).to.have.been.calledWith(201);
     expect(response.json).to.have.been.calledWith(mockCreateProduct);
+  });
+
+  it('Verifica se é atualizado um novo produto', async () => {
+    sinon.stub(service, 'updateProduct').resolves({ id: 3, name: 'Martelo do Batman' });
+    const request = { params: { id: 3 }, body: { name: 'Martelo do Batman' } };
+    const response = {};
+    response.status = sinon.stub().returns(response);
+    response.json = sinon.stub().returns();
+
+    // console.log(request, 'request')
+
+    // console.log(response, 'response')
+
+    await productController.updateProducts(request, response);
+
+    // console.log(teste, 'teste');
+
+
+    expect(response.status).to.have.been.calledWith(200);
+    expect(response.json).to.have.been.calledWith({ id: 3, name: 'Martelo do Batman' });
   });
 })

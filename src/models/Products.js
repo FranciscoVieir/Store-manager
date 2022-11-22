@@ -22,7 +22,7 @@ const createProduct = async (name) => {
 };
 
 const putProduct = async (name, id) => {
-  const updateResult = await connection
+  const [updateResult] = await connection
     .execute('UPDATE StoreManager.products SET name = (?) WHERE id = (?);', [name, id]);
   // console.log(updateResult, 'update');
 
@@ -32,7 +32,7 @@ const putProduct = async (name, id) => {
 const deleteProduct = async (id) => {
   const result = await connection
     .execute('DELETE FROM StoreManager.products WHERE id = (?);', [id]);
-  console.log('deleteModel', result);
+  // console.log('deleteModel', result);
   return result;
 };
 

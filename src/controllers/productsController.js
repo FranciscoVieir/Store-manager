@@ -23,7 +23,7 @@ const createProduct = async (req, resp) => {
 
   const newProduct = await service.serviceCreateProduct(name);
 
-  console.log('create', newProduct);
+  // console.log('create', newProduct);
 
   resp.status(201).json(newProduct);
 };
@@ -34,8 +34,9 @@ const updateProducts = async (request, response) => {
   const productById = await service.getProductById(Number(id));
 
   const newObj = await service.updateProduct(name, id);
-  // console.log(newObj);
+  // console.log(newObj, 'updateController');
 
+  console.log(productById, 'productById');
   if (!productById) return response.status(404).json({ message: 'Product not found' });
 
   return response.status(200).json(newObj);
@@ -45,7 +46,7 @@ const deleteProductById = async (request, response) => {
   const { id } = request.params;
 
   const productById = await service.getProductById(Number(id));
-  // console.log(productById);
+  // console.log(productById, '');
 
   if (!productById) return response.status(404).json({ message: 'Product not found' });
 
