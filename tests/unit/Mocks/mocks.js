@@ -15,6 +15,25 @@ const mockAllProducts = [
   }
 ]
 
+const mockCreateProduct = [
+  {
+    "id": 1,
+    "name": "Martelo de Thor"
+  },
+  {
+    "id": 2,
+    "name": "Traje de encolhimento"
+  },
+  {
+    "id": 3,
+    "name": "Escudo do Capitão América"
+  },
+  {
+    "id": 5,
+    "name": "ProdutoX"
+  }
+]
+
 const mockProductById = {
   "id": 1,
   "name": "Martelo de Thor"
@@ -51,4 +70,5 @@ module.exports = {
   mockProductById,
   mockUptade,
   mockDelete,
+  mockCreateProduct,
 }
