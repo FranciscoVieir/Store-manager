@@ -47,7 +47,7 @@ describe('Verificando a camada controller', () => {
 
   it('Verifica se remove exibido uma messagem de "Product not found", caso o id inserido seja inválido ', async () => {
     sinon.stub(service, 'deleteProducts').resolves(undefined);
-    const request = { params: { id: 1 } };
+    const request = { params: { id: 55 } };
     const response = {};
     response.status = sinon.stub().returns(response);
     response.json = sinon.stub().returns();
