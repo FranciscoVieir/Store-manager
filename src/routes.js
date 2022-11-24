@@ -7,9 +7,11 @@ const {
   deleteProductById,
 } = require('./controllers/productsController');
 
-// const {
-//   getAllSales,
-// } = require('./controllers/salesController');
+const {
+  getAllSalesController,
+  getSalesByIdController,
+
+} = require('./controllers/salesController');
 
 const { validationProductName } = require('./middlewares/validationProduct');
 
@@ -25,5 +27,8 @@ router.put('/products/:id', validationProductName, updateProducts);
 
 router.delete('/products/:id', deleteProductById);
 
-// router.get('/sales', getAllSales);
+router.get('/sales', getAllSalesController);
+
+router.get('/sales/:id', getSalesByIdController);
+
 module.exports = router;

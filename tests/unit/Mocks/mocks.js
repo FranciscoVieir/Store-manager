@@ -65,10 +65,18 @@ const mockDelete = {
   warningStatus: 0
 }
 
+const mockGetAllSales = {
+  date: '2022-11-24T16:04:49.000Z',
+  productId: 1,
+  quantity: 5,
+  saleId: 1
+}
+
 module.exports = {
   mockAllProducts,
   mockProductById,
   mockUptade,
   mockDelete,
   mockCreateProduct,
+  mockGetAllSales
 }
